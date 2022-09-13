@@ -1,46 +1,35 @@
-# Getting Started with Create React App
+# HTML5 QR Code Scanner POC
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This POC demonstrates how to open a scanner, read a QR code, extract information from it, and decide what to do with that information. It's React, web-based, using your computer's webcam, both your smartphone's front and cameras, and even via file upload if that's what you got.
 
-## Available Scripts
+## Sibling projects
 
-In the project directory, you can run:
+* This POC is the web version of the [React Native QR code scanner POC](https://github.com/schonarth/react-native-qrcode-scanner-poc) I built to do the same thing on a native mobile app.
 
-### `npm start`
+* Also, go to https://schonarth.github.io/react-qrcode-deep-link to generate *deferred deep link* QR codes that send users to the app if read from a regular mobile camera app. Scanning those with this app extracts the parameters so you can stay in-app.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Installing
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Check out this repository into a folder and run ```yarn``` or ```npm install``` to install the dependencies, then either ```yarn run start``` or ```npm run start```, depending on your flavor.
 
-### `npm test`
+The app functionality is self-explained in the ```src/App.tsx``` and ```src/Html5QrcodePlugin.tsx``` files.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Using
 
-### `npm run build`
+Once the app is running on your browser:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Toggle the **Scanner ON** switch to begin
+  * To scan an image file, click the **Stop Scanning** within the scanner UI, then the **Scan an Image File** link.
+* The scanner supports several different formats:
+  * 1D barcode (several standards)
+  * QR code and other 2D formats
+  * If the code contains a URL, you can use it to start navigation.
+  * [Deferred deep link](https://schonarth.github.io/react-qrcode-deep-link) codes contain an URL that behave according to the scenario:
+    * When scanned with a smartphone camera app, it will either
+      * Open the app if installed, passing included parameters, or
+      * Send users to either App Store or Google Play Store, depending on their device, to install the app.
+    * When scanned with this app, included parameters can be extracted and used immediately, no need to navigate away.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Known issue
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+The scanner component intermitently displays the camera view twice. This is the (very) quick-and-easy implementation, though; using the API to skip the provided UI should avoid the issue.
