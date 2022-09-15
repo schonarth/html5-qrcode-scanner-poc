@@ -2,6 +2,8 @@
 
 This POC demonstrates how to open a scanner, read a QR code, extract information from it, and decide what to do with that information. It's React, web-based, using your computer's webcam, both your smartphone's front and cameras, and even via file upload if that's what you got.
 
+You can check it out live at https://schonarth.github.io/html5-qrcode-scanner-poc/
+
 ## Sibling projects
 
 * This POC is the web version of the [React Native QR code scanner POC](https://github.com/schonarth/react-native-qrcode-scanner-poc) I built to do the same thing on a native mobile app.
